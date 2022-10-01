@@ -5,7 +5,9 @@ let numeroJogadas = 0;
 let numeroJogadasX = 0;
 let numeroJogadasO = 0;
 
-let tempoJogado;
+let tempoJogadoDataInicio;
+let tempoJogadoSegundos;
+
 let vencedor;
 let ehVelha = false;
 
@@ -37,8 +39,8 @@ function escolherCasa(event, index) {
     return;
   }
 
-  if (!tempoJogado) {
-    tempoJogado = new Date();
+  if (!tempoJogadoDataInicio) {
+    tempoJogadoDataInicio = new Date();
   }
 
   exibirJogada(event);
@@ -64,7 +66,8 @@ function escolherCasa(event, index) {
 function calcularMelhorTempo() {
   const agora = new Date()
 
-  const segundos = (agora.getTime() - tempoJogado.getTime()) / 1000;
+  const segundos = (agora.getTime() - tempoJogadoDataInicio.getTime()) / 1000;
+  tempoJogadoSegundos = segundos;
 
   if (!melhorTempoSegundos || segundos < melhorTempoSegundos) {
     melhorTempoSegundos = segundos;
@@ -90,6 +93,9 @@ function exibirPlacar() {
 
   elementoPontosX.innerText = pontosX;
   elementoPontosO.innerText = pontosO;
+
+  const tempoPartida = document.getElementById("sTempoPartida");
+  tempoPartida.innerText = "Tempo da partida: " + new Date(1000 * tempoJogadoSegundos).toISOString().substr(11, 8);
 
   if (melhorTempoSegundos) {
     const elementoSegundos = document.getElementById("sMelhorTempoSegundos");  
@@ -206,7 +212,9 @@ function reiniciar() {
   numeroJogadasO = 0;
 
   ehVelha = false;
-  tempoJogado = null;
+
+  tempoJogadoDataInicio = null;
+  tempoJogadoSegundos = null;
   vencedor = null;
 
   const tiles = document.getElementsByClassName("tile");
@@ -218,5 +226,8 @@ function reiniciar() {
 
   const elementoVencedor = document.getElementById("sVencedor");
   elementoVencedor.innerText = "";
+
+  const tempoPartida = document.getElementById("sTempoPartida");
+  tempoPartida.innerText = "";
 }
 
