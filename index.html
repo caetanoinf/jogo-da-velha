@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Jogo da Velha</title>
+</head>
+<body>
+
+    <header>
+        <h1>Jogo da Velha</h1>
+        <h2>Jogador da vez: <span id="sJogadorDaVez">X</span></h2>
+    </header>
+
+    <main>
+        <div class="tile_row">
+            <span class="tile" onclick="escolherCasa(event, 0)"></span>
+            <span class="tile" onclick="escolherCasa(event, 1)"></span>
+            <span class="tile" onclick="escolherCasa(event, 2)"></span>
+        </div>
+        <div class="tile_row">
+            <span class="tile" onclick="escolherCasa(event, 3)"></span>
+            <span class="tile" onclick="escolherCasa(event, 4)"></span>
+            <span class="tile" onclick="escolherCasa(event, 5)"></span>
+        </div>
+        <div class="tile_row">
+            <span class="tile" onclick="escolherCasa(event, 6)"></span>
+            <span class="tile" onclick="escolherCasa(event, 7)"></span>
+            <span class="tile" onclick="escolherCasa(event, 8)"></span>
+        </div>
+    </main>
+
+    <footer>
+      <h2 id="sVencedor"></h2>
+  
+      <button onclick="reiniciar()">Reiniciar</button>
+    
+      <h4>Placar:</h2>
+      <p>Jogador X: <span id="nPontosX">0</span></p>
+      <p>Jogador O: <span id="nPontosO">0</span></p>
+
+      <h4>Melhor tempo:</h2>
+      <p>Tempo: <span id="sMelhorTempoSegundos"></span></p>
+      <p>Jogador: <span id="sMelhorTempoJogador"></span></p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
